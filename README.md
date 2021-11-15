@@ -24,6 +24,8 @@ The output is also stored in a file express_accounts.txt on the same directory o
 [(account_id_1, onboarding_url_1), ..., (account_id_n, onboarding_url_n)]
 ```
 
+Only works with US, GB, IE and NL connected accounts at the moment.
+
 ## Getting Started
 
 ### Dependencies
