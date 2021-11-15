@@ -7,8 +7,13 @@
         },
         {
             "number": 2,
-            "name": "Phoenix",
-            "country": "US"        
+            "name": "Dublin",
+            "country": "IE"       
+        },
+        {
+            "number": 3,
+            "name": "Amsterdam",
+            "country": "NL"       
         }
     ]
 }

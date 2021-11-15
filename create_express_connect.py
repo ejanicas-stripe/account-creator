@@ -69,70 +69,36 @@ def create_express_account(name, number, country):
     # name is of format <number> <name>
     account_name = "{} {}".format(number, name)
     print("Creating " + account_name)
+    f = open('dummy_data.json',)
+    dummy_data = json.load(f)
+    f.close()
     # pre-polutate account with test data as per https://stripe.com/docs/connect/testing
     account = stripe.Account.create(
         type="express",
         country=country,
         email=account_email,
-        business_type="company",
-        company={
-            "address": {
-                "line1": "address_full_match",
-                "city": "Schenectady",
-                "postal_code": "12345",
-                "state": "NY"
-            },
-            "structure": "sole_proprietorship",
-            "name": account_name,
-            "tax_id": "000000000",
+        business_type="individual",
+        individual={
+            "first_name": "Jenny",
+            "last_name": "Rosen",
+            "address": dummy_data[country]["address"],
             "phone": "0000000000",
+            "id_number": "000000000",
+            "phone": "0000000000",
+            "email": account_email,
+            "dob": {
+                "day": "01",
+                "month": "01",
+                "year": "1901",
+            },
+            "political_exposure": "none"
         },
-        external_account={
-            "object": "bank_account",
-            "country": "US",
-            "currency": "usd",
-            "routing_number": "110000000",
-            "account_number": "000123456789",
-        },
+        external_account=dummy_data[country]["external_account"],
         business_profile={
             "mcc": "7011",
             "url": "https://rocketrides.io/",
             "name": account_name
         }
-    )
-    # You need to use the Persons API to collect information on the business owners
-    stripe.Account.create_person(
-        account.id,
-        first_name="Jenny",
-        last_name="Rosen",
-        relationship={
-            "owner": "true",
-            "executive": "true",
-            "representative": "true",
-            "percent_ownership": "100",
-            "title": "CEO",
-        },
-        address={
-            "line1": "address_full_match",
-            "city": "Schenectady",
-            "postal_code": "12345",
-            "state": "NY",
-        },
-        dob={
-            "day": "01",
-            "month": "01",
-            "year": "1901",
-        },
-        ssn_last_4="0000",
-        phone="0000000000",
-        email=account_email,
-    )
-    stripe.Account.modify(
-        account.id,
-        company={
-            "owners_provided": "true",
-            "executives_provided": "true"
-        },
     )
     # Account Links are the means by which an express connected account can accept its TOS
     account_link = stripe.AccountLink.create(

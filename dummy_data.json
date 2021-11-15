@@ -1,0 +1,58 @@
+{
+    "US": {
+        "address": {
+            "line1": "address_full_match",
+            "city": "Schenectady",
+            "postal_code": "12345",
+            "state": "NY"
+        },
+        "external_account": {
+            "object": "bank_account",
+            "country": "US",
+            "currency": "usd",
+            "routing_number": "110000000",
+            "account_number": "000123456789"
+        }
+    },
+    "GB": {
+        "address": {
+            "line1": "address_full_match",
+            "city": "London",
+            "postal_code": "SW1A1AA"
+        },
+        "external_account": {
+            "object": "bank_account",
+            "country": "GB",
+            "currency": "gbp",
+            "routing_number": "108800",
+            "account_number": "00012345"
+        }
+    },
+    "IE": {
+        "address": {
+            "line1": "address_full_match",
+            "city": "Dublin",
+            "postal_code": "D02WD51",
+            "state": "Co. Dublin"
+        },
+        "external_account": {
+            "object": "bank_account",
+            "country": "IE",
+            "currency": "eur",
+            "account_number": "IE89370400440532013000"
+        }
+    },
+    "NL": {
+        "address": {
+            "line1": "address_full_match",
+            "city": "Amsterdam",
+            "postal_code": "1071 DJ"
+        },
+        "external_account": {
+            "object": "bank_account",
+            "country": "NL",
+            "currency": "eur",
+            "account_number": "NL89370400440532013000"
+        }
+    }
+}
