@@ -62,7 +62,7 @@ def create_express_account(name, number, country):
     Keyword Arguments:
     name -- account name
     number -- account number
-    country -- country code (ISO 3166-1 alpha-2 country code - US only at the moment)
+    country -- country code (ISO 3166-1 alpha-2 country code - US, GB, IE and NL only at the moment)
     """
     # email is of format <name>@example.com
     account_email = "{}@example.com".format(name.lower().replace(" ", ""))
