@@ -2,7 +2,7 @@
 
 """Create Connect Express Accounts for Testing.
 
-The aim of this script is to quickly generate Connect Express test accounts for BWI.
+The aim of this script is to quickly generate Connect Express test accounts.
 
 Testing is important to make sure your Connect integration handles different flows correctly. 
 Use test mode to simulate live mode while taking advantage of Stripe-provided special tokens to make testing easier.
@@ -42,17 +42,17 @@ __email__ = "ejanicas@stripe.com"
 __status__ = "Prototype"
 
 
-def import_hotels(path):
+def import_account_info(path):
     """
-    Returns a dictionary of hotels to create
+    Returns a dictionary of accounts to create
 
     Keyword Arguments:
-    path -- path of the hotels JSON
+    path -- path of the account_info JSON
     """
     f = open(path,)
-    hotels = json.load(f)
+    accounts_info = json.load(f)
     f.close()
-    return hotels
+    return accounts_info
 
 
 def create_express_account(name, number, country):
@@ -60,8 +60,8 @@ def create_express_account(name, number, country):
     Returns a tuple with an account id and an onboarding account link
 
     Keyword Arguments:
-    name -- resort name
-    number -- resort number
+    name -- account name
+    number -- account number
     country -- country code (ISO 3166-1 alpha-2 country code - US only at the moment)
     """
     # email is of format <name>@example.com
@@ -96,7 +96,7 @@ def create_express_account(name, number, country):
         },
         business_profile={
             "mcc": "7011",
-            "url": "https://www.bestwestern.com/",
+            "url": "https://rocketrides.io/",
             "name": account_name
         }
     )
@@ -124,7 +124,7 @@ def create_express_account(name, number, country):
             "year": "1901",
         },
         ssn_last_4="0000",
-        phone="000 000 0000",
+        phone="0000000000",
         email=account_email,
     )
     stripe.Account.modify(
@@ -144,33 +144,33 @@ def create_express_account(name, number, country):
     return (account.id, account_link.url)
 
 
-def create_express_accounts(hotels):
+def create_express_accounts(accounts_info):
     """
-    Returns a list of tuples wit an account ids and onboarding account links
+    Returns a list of tuples with account ids and onboarding account links
 
     Keyword Arguments:
-    hotels -- JSON of hotels to create
+    accounts_info -- dictionary of accounts to create
     """
     result = []
-    for hotel in hotels["data"]:
+    for account_info in accounts_info["data"]:
         result.append(create_express_account(
-            hotel["name"], hotel["number"], hotel["country"]))
+            account_info["name"], account_info["number"], account_info["country"]))
     return result
 
 
 if __name__ == '__main__':
     if not os.path.exists("account_info.json"):
-        print("No account_info.json file to import hotels from. Try creating the account_info file first")
+        print("No account_info.json file to import account information from. Try creating the account_info file first")
         sys.exit(0)
 
-    print("Importing hotels from account_info.json...")
-    hotels = import_hotels('account_info.json')
+    print("Importing data from account_info.json...")
+    hotels = import_account_info('account_info.json')
     # account_info.json expected format:
     # {
     #     "data": [
     #         {
     #             "number": 1,
-    #             "name": "Hotel Name",
+    #             "name": "Resort Name",
     #             "country": "US"  // ISO 3166-1 alpha-2 country code
     #         },
     #         ...
@@ -179,7 +179,7 @@ if __name__ == '__main__':
     print("account_info.json imported!")
     print("Creating Express Connect Accounts")
     accounts = create_express_accounts(hotels)
-    print("All hotels created!")
+    print("All accounts created!")
     print("Creating express_account.txt file")
     # [(account_id_1, onboarding_url_1), ..., (account_id_n, onboarding_url_n)]
     with open('express_accounts.txt', 'a') as f:

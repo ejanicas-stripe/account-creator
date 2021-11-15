@@ -1,6 +1,6 @@
 # Express Connect Account Creator
 
-The aim of this script is to quickly generate Connect Express test accounts for BWI.
+The aim of this script is to quickly generate Connect Express test accounts.
 
 ## Description
 
@@ -79,7 +79,7 @@ EXPORT STRIPE_API_KEY=sk_test_?????
 ./create_express_connect.py
 ```
 
-4. The output is displayed both in the console while running and in the `express_accounts.txt` file. Make sure to go through each of the URLs there to accept the TOS.
+4. **MAKE SURE YOU LOGGED OUT OF YOUR CONSOLE BEFORE THIS STEP**. The output is displayed both in the console while running and in the `express_accounts.txt` file. Make sure to go through each of the URLs there to accept the TOS.
 
 5. (Optional) If you want to delete all accounts created using this script, run the `purge_connect.py` script
 
