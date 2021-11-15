@@ -1,0 +1,14 @@
+{
+    "data": [
+        {
+            "number": 1,
+            "name": "San Francisco",
+            "country": "US"
+        },
+        {
+            "number": 2,
+            "name": "Phoenix",
+            "country": "US"        
+        }
+    ]
+}
