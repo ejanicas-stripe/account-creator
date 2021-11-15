@@ -54,5 +54,31 @@
             "currency": "eur",
             "account_number": "NL89370400440532013000"
         }
+    },
+    "FR": {
+        "address": {
+            "line1": "address_full_match",
+            "city": "Paris",
+            "postal_code": "75007"
+        },
+        "external_account": {
+            "object": "bank_account",
+            "country": "FR",
+            "currency": "eur",
+            "account_number": "FR89370400440532013000"
+        }
+    },
+    "DE": {
+        "address": {
+            "line1": "address_full_match",
+            "city": "Berlin",
+            "postal_code": "10117"
+        },
+        "external_account": {
+            "object": "bank_account",
+            "country": "DE",
+            "currency": "eur",
+            "account_number": "DE89370400440532013000"
+        }
     }
 }
